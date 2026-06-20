@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Willow Care — Design Tokens
+   ========================================================================== */
+
+:root {
+  /* ---- Color: named per brand swatch ---- */
+  --spruce: #365136;       /* Dark Spruce — primary ink, deep accents */
+  --hunter: #426542;       /* Hunter Green — primary CTA / accent */
+  --hunter-dim: #395839;   /* hover state for hunter */
+  --mint: #E6EDE6;         /* Mint Cream — soft section tint */
+  --porcelain: #F4F7F4;    /* Porcelain — alt section bg */
+  --snow: #FAFAF9;         /* Bright Snow — page bg */
+  --white: #FFFFFF;
+  --alabaster: #E7E5E4;    /* Alabaster Grey — hairlines, borders */
+
+  /* derived */
+  --ink: #25352A;          /* slightly softened near-black green-ink for body text */
+  --ink-soft: #5B6B60;     /* secondary text */
+  --ink-faint: #8A968D;    /* tertiary / placeholder text */
+  --ring: rgba(66, 101, 66, 0.35);
+
+  /* ---- Type ---- */
+  --font-display: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'DM Mono', 'SFMono-Regular', Menlo, monospace;
+
+  /* ---- Scale ---- */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --step-1:  clamp(1.2rem, 1.13rem + 0.35vw, 1.4rem);
+  --step-2:  clamp(1.5rem, 1.35rem + 0.7vw, 1.9rem);
+  --step-3:  clamp(2rem, 1.7rem + 1.4vw, 2.75rem);
+  --step-4:  clamp(2.6rem, 2.1rem + 2.4vw, 4rem);
+  --step-5:  clamp(3.2rem, 2.4rem + 3.8vw, 5.4rem);
+
+  /* ---- Spacing ---- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.75rem;
+  --space-lg: 3rem;
+  --space-xl: 5.5rem;
+  --space-2xl: 8.5rem;
+
+  /* ---- Shape & motion ---- */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 26px;
+  --ease-leaf: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 220ms;
+  --dur-med: 480ms;
+  --dur-slow: 760ms;
+
+  --shadow-sm: 0 1px 2px rgba(37, 53, 42, 0.06), 0 1px 1px rgba(37, 53, 42, 0.04);
+  --shadow-md: 0 8px 24px -8px rgba(37, 53, 42, 0.18), 0 2px 8px -2px rgba(37, 53, 42, 0.08);
+  --shadow-lg: 0 24px 60px -16px rgba(37, 53, 42, 0.28), 0 6px 18px -6px rgba(37, 53, 42, 0.12);
+
+  --max-width: 1280px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-med: 1ms;
+    --dur-slow: 1ms;
+  }
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--snow);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--spruce);
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { max-width: 100%; display: block; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+::selection {
+  background: var(--hunter);
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--hunter);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hunter);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--hunter);
+  display: inline-block;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Stem divider — the recurring "growth" motif, used sparingly */
+.stem-divider {
+  width: 1px;
+  height: var(--space-lg);
+  margin-inline: auto;
+  background: linear-gradient(to bottom, transparent, var(--alabaster) 30%, var(--alabaster) 70%, transparent);
+  position: relative;
+}
+
+.stem-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--hunter);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}

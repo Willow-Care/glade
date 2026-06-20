@@ -1,0 +1,351 @@
+/* ==========================================================================
+   Willow Care — Genesis / Our Story Page
+   ========================================================================== */
+
+body { background: var(--snow); }
+
+/* ---- Story hero ---- */
+
+.story-hero {
+  padding-block: clamp(3rem, 7vw, var(--space-xl)) clamp(2.5rem, 6vw, var(--space-lg));
+  position: relative;
+}
+
+.story-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 90% 0%, var(--mint) 0%, transparent 45%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.story-hero-inner {
+  max-width: 760px;
+}
+
+.story-hero h1 {
+  font-size: var(--step-5);
+  margin-block: var(--space-md) var(--space-md);
+}
+
+.story-hero-lede {
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  max-width: 56ch;
+  font-weight: 400;
+}
+
+.story-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--alabaster);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+/* ---- Story body ---- */
+
+.story-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.story-toc {
+  position: sticky;
+  top: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.story-toc-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.8rem;
+}
+
+.story-toc a {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  padding-block: 0.45rem;
+  border-left: 2px solid var(--alabaster);
+  padding-left: 0.9rem;
+  transition: color var(--dur-fast) var(--ease-soft), border-color var(--dur-fast) var(--ease-soft);
+}
+
+.story-toc a:hover { color: var(--spruce); }
+
+.story-toc a.is-active {
+  color: var(--hunter);
+  border-left-color: var(--hunter);
+  font-weight: 500;
+}
+
+.story-content {
+  max-width: 70ch;
+}
+
+.story-section {
+  padding-block: var(--space-lg);
+  border-bottom: 1px solid var(--alabaster);
+  scroll-margin-top: 6rem;
+}
+
+.story-section:first-child { padding-top: 0; }
+.story-section:last-child { border-bottom: none; }
+
+.story-section .eyebrow { margin-bottom: var(--space-sm); }
+
+.story-section h2 {
+  font-size: var(--step-3);
+  margin-bottom: var(--space-md);
+}
+
+.story-section p {
+  color: var(--ink-soft);
+  margin-bottom: var(--space-sm);
+}
+
+.story-section p:last-of-type { margin-bottom: 0; }
+
+.story-section p strong {
+  color: var(--spruce);
+  font-weight: 600;
+}
+
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--step-2);
+  color: var(--spruce);
+  line-height: 1.4;
+  margin-block: var(--space-md);
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--hunter);
+}
+
+/* ---- What Willow is: feature recap cards ---- */
+
+.what-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: var(--space-md);
+}
+
+.what-card {
+  background: var(--white);
+  border: 1px solid var(--alabaster);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  transition: border-color var(--dur-fast) var(--ease-soft), box-shadow var(--dur-fast) var(--ease-soft);
+}
+
+.what-card:hover {
+  border-color: var(--hunter);
+  box-shadow: var(--shadow-sm);
+}
+
+.what-card .pillar-icon { margin-bottom: 0.85rem; }
+
+.what-card h3 {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--spruce);
+  margin-bottom: 0.4rem;
+}
+
+.what-card p {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+
+.what-card ul {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.what-card li {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.what-card li::before {
+  content: '';
+  width: 4px; height: 4px;
+  margin-top: 0.5rem;
+  border-radius: 50%;
+  background: var(--hunter);
+  flex-shrink: 0;
+}
+
+/* ---- Gallery (screenshots) ---- */
+
+.gallery {
+  margin-top: var(--space-md);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.9rem;
+}
+
+.gallery-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--mint);
+  border: 1px solid var(--alabaster);
+  position: relative;
+  aspect-ratio: 4/3;
+}
+
+.gallery-item.is-tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: var(--hunter);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.gallery-placeholder svg { width: 30px; height: 30px; opacity: 0.7; }
+
+.gallery-placeholder span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  max-width: 22ch;
+}
+
+/* ---- Vision recap list ---- */
+
+.vision-recap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: var(--space-md);
+}
+
+.vision-recap-item {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: var(--space-md);
+  padding-block: 1.3rem;
+  border-top: 1px solid var(--alabaster);
+}
+
+.vision-recap-item:last-child { border-bottom: 1px solid var(--alabaster); }
+
+.vision-recap-num {
+  font-family: var(--font-mono);
+  color: var(--hunter);
+  font-size: 0.85rem;
+}
+
+.vision-recap-item h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--spruce);
+  margin-bottom: 0.3rem;
+}
+
+.vision-recap-item p {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+/* ---- Closing CTA ---- */
+
+.story-cta {
+  background: var(--spruce);
+  border-radius: var(--radius-lg);
+  padding: clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+  margin-top: var(--space-xl);
+  color: var(--white);
+}
+
+.story-cta .eyebrow { color: rgba(255,255,255,0.7); justify-content: center; }
+.story-cta .eyebrow::before { display: none; }
+
+.story-cta h2 {
+  color: var(--white);
+  font-size: var(--step-3);
+  margin-block: var(--space-sm) var(--space-sm);
+}
+
+.story-cta p {
+  color: rgba(255,255,255,0.75);
+  max-width: 50ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-lg);
+}
+
+.story-cta .btn-primary {
+  background: var(--white);
+  color: var(--spruce);
+}
+
+.story-cta .btn-primary:hover {
+  background: var(--mint);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 980px) {
+  .story-layout { grid-template-columns: 1fr; }
+  .story-toc {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin-bottom: var(--space-md);
+  }
+  .story-toc a {
+    border-left: none;
+    border-bottom: 2px solid var(--alabaster);
+    padding-left: 0;
+    padding-bottom: 0.4rem;
+  }
+  .story-toc a.is-active { border-left-color: transparent; border-bottom-color: var(--hunter); }
+}
+
+@media (max-width: 700px) {
+  .what-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item.is-tall { grid-row: auto; aspect-ratio: 4/3; }
+  .vision-recap-item { grid-template-columns: 1fr; gap: 0.3rem; }
+}
