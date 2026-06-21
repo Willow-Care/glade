@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Willow — Care coordination, simplified</title>
+<meta name="description" content="Willow is a secure, collaborative care coordination platform that brings family members, aides, and care teams onto one real-time source of truth. Built by Willow Care.">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="product.css">
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- Nav                                                            -->
+<!-- ============================================================ -->
+<header class="site-nav">
+  <div class="container nav-bar">
+    <a href="../index.html" class="nav-brand">
+      <img class="mark" src="../assets/Willow Logo.png" alt="">
+      Willow
+      <span class="nav-brand-sub">by Willow Care</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="../genesis.html">Our story</a>
+      <a href="../index.html">Willow Care</a>
+      <a class="nav-cta" href="https://willow.willowcare.app" target="_blank" rel="noopener">Open Willow</a>
+    </nav>
+
+    <button class="nav-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 6H19M3 11H19M3 16H19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="mobileDrawer">
+  <div class="nav-drawer-head">
+    <a href="../index.html" class="nav-brand">
+      <img class="mark" src="../assets/Willow Logo.png" alt="">
+      Willow
+    </a>
+    <button class="nav-drawer-close" id="mobileMenuClose" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="nav-drawer-links" aria-label="Mobile">
+    <a href="#about">About</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="../genesis.html">Our story</a>
+    <a href="../index.html">Willow Care</a>
+  </nav>
+  <div class="nav-drawer-foot">
+    <a class="btn btn-primary" href="https://willow.willowcare.app" target="_blank" rel="noopener">
+      Open Willow
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
+
+<main>
+
+  <!-- ============================================================ -->
+  <!-- Hero                                                           -->
+  <!-- ============================================================ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow hero-eyebrow">Willow, by Willow Care</span>
+        <h1>Keep your entire care team on <em>the same page.</em></h1>
+        <p class="hero-lede">Willow replaces scribbled logs, scattered texts, and missed handoffs with a single real-time source of truth — for families, aides, and the people they love.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://willow.willowcare.app" target="_blank" rel="noopener">
+            Open Willow
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="../genesis.html">Read our story</a>
+        </div>
+        <div class="hero-trust">
+          <span>Built for families &amp; home aides</span>
+          <span class="dot-divider" aria-hidden="true"></span>
+          <span>Private, permissioned access</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="feed-card" role="img" aria-label="A look inside Willow, showing a medication log, vitals entry, and shift handover note">
+          <div class="feed-card-header">
+            <span class="feed-card-title">Today's care feed</span>
+            <span class="feed-card-live"><span class="pulse-dot" aria-hidden="true"></span>Live</span>
+          </div>
+
+          <div class="feed-entry">
+            <span class="feed-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6V18M6 12H18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </span>
+            <div class="feed-body">
+              <div class="feed-row-top">
+                <span class="feed-label">Morning medication given</span>
+                <span class="feed-time">8:02 AM</span>
+              </div>
+              <p class="feed-note">Lisinopril 10mg — taken with breakfast, no issues.</p>
+            </div>
+          </div>
+
+          <div class="feed-entry">
+            <span class="feed-icon is-amber">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8V13L15 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <div class="feed-body">
+              <div class="feed-row-top">
+                <span class="feed-label">Vitals logged</span>
+                <span class="feed-time">9:15 AM</span>
+              </div>
+              <p class="feed-note">BP 122/78 · O2 97% · within normal range.</p>
+            </div>
+          </div>
+
+          <div class="feed-entry">
+            <span class="feed-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12L9 17L20 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="feed-body">
+              <div class="feed-row-top">
+                <span class="feed-label">Shift handover ready</span>
+                <span class="feed-time">2:00 PM</span>
+              </div>
+              <p class="feed-note">Summary sent to incoming aide — PT session at 4 PM.</p>
+            </div>
+          </div>
+
+          <div class="feed-card-footer">
+            <div class="feed-avatars" aria-hidden="true">
+              <span>M</span><span>R</span><span>A</span>
+            </div>
+            <span class="feed-meta">3 people on this care team</span>
+          </div>
+        </div>
+
+        <div class="hero-float-stat stat-bottom">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C12 21 4 16 4 9.5C4 6.46 6.46 4 9.5 4C10.81 4 12 4.78 12 4.78C12 4.78 13.19 4 14.5 4C17.54 4 20 6.46 20 9.5C20 16 12 21 12 21Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span>
+            <span class="stat-num">Zero</span>
+            <span class="stat-label">missed handoffs</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Trust strip                                                    -->
+  <!-- ============================================================ -->
+  <div class="trust-strip">
+    <div class="container">
+      <span class="trust-strip-label">What Willow is built for</span>
+      <div class="trust-points">
+        <span class="trust-point">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 3V7M16 3V7M4 10H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Shared calendar &amp; tasks
+        </span>
+        <span class="trust-point">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3L4 6.5V11C4 16 7.4 19.7 12 21C16.6 19.7 20 16 20 11V6.5L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          Private, permissioned access
+        </span>
+        <span class="trust-point">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H8L10 6L14 18L16 12H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Vitals &amp; medication tracking
+        </span>
+        <span class="trust-point">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5 20C5 16.5 8 14.5 12 14.5C16 14.5 19 16.5 19 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Built for whole care teams
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- About / four pillars                                           -->
+  <!-- ============================================================ -->
+  <section class="section section-bg-tint" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">What Willow does</span>
+        <h2>Four pillars. One source of truth.</h2>
+        <p>Willow gives every care team everything it needs to stay aligned — from the first morning check-in to the last note before lights out.</p>
+      </div>
+
+      <div class="pillars reveal">
+        <div class="pillar">
+          <span class="pillar-num">01</span>
+          <span class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6H20M4 12H20M4 18H14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </span>
+          <h3>Central care feed</h3>
+          <p>A continuous, chronological timeline of meals, mood, therapy sessions, and daily observations.</p>
+          <ul class="pillar-list">
+            <li>Real-time log updates</li>
+            <li>Automated shift handover summaries</li>
+          </ul>
+        </div>
+
+        <div class="pillar">
+          <span class="pillar-num">02</span>
+          <span class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H8L10 6L14 18L16 12H20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Medication &amp; vitals</h3>
+          <p>Precise adherence logs and biometric dashboards that surface trends before they become emergencies.</p>
+          <ul class="pillar-list">
+            <li>Dosage &amp; adherence tracking</li>
+            <li>Visual vitals charts over time</li>
+          </ul>
+        </div>
+
+        <div class="pillar">
+          <span class="pillar-num">03</span>
+          <span class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 3V7M16 3V7M4 10H20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </span>
+          <h3>Smart care calendar</h3>
+          <p>One shared calendar for appointments, shifts, family visits, and therapy — plus clear task ownership.</p>
+          <ul class="pillar-list">
+            <li>Unified shared scheduling</li>
+            <li>Assignable daily task checklists</li>
+          </ul>
+        </div>
+
+        <div class="pillar">
+          <span class="pillar-num">04</span>
+          <span class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3L4 6.5V11C4 16 7.4 19.7 12 21C16.6 19.7 20 16 20 11V6.5L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Access &amp; permissions</h3>
+          <p>Secure, multi-tenant data isolation so every family's information stays inside their own network.</p>
+          <ul class="pillar-list">
+            <li>Family admins get full control</li>
+            <li>Aides get scoped daily-log access</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Screenshots                                                    -->
+  <!-- ============================================================ -->
+  <section class="section" id="screenshots">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Willow in practice</span>
+        <h2>What a day inside Willow looks like.</h2>
+        <p>Real product screenshots go here — the fastest way to build trust with a family evaluating Willow for the first time.</p>
+      </div>
+
+      <div class="gallery-grid reveal">
+        <div class="gallery-item is-tall">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 15L8.5 10L13 14L21 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Care feed screenshot</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H8L10 6L14 18L16 12H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Vitals dashboard</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 3V7M16 3V7M4 10H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Care calendar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Final CTA                                                      -->
+  <!-- ============================================================ -->
+  <section class="section section-bg-porcelain">
+    <div class="container">
+      <div class="final-cta reveal">
+        <span class="eyebrow">Get started</span>
+        <h2>Bring your care team onto one page today.</h2>
+        <p>Willow is ready for your family, your aides, and everyone in between.</p>
+        <div class="final-cta-actions">
+          <a class="btn btn-primary" href="https://willow.willowcare.app" target="_blank" rel="noopener">
+            Open Willow
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="../genesis.html">Learn our story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- Footer                                                         -->
+<!-- ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-brand">
+          <img class="mark" src="../assets/Willow Logo.png" alt="">
+          Willow
+        </a>
+        <p>The care-coordination platform built by Willow Care. One real-time source of truth for the whole care team.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Willow</h5>
+        <ul>
+          <li><a href="https://willow.willowcare.app" target="_blank" rel="noopener">Open Willow</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#screenshots">Screenshots</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Willow Care</h5>
+        <ul>
+          <li><a href="../index.html">The organization</a></li>
+          <li><a href="../genesis.html">Our story</a></li>
+          <li><a href="../index.html#vision">Vision</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Willow Care. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="product.js"></script>
+</body>
+</html>
