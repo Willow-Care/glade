@@ -41,6 +41,8 @@ body { background: var(--snow); }
   width: 30px;
   height: 30px;
   flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 7px;
 }
 
 .nav-links {
@@ -1031,6 +1033,11 @@ body { background: var(--snow); }
   .footer-top { grid-template-columns: 1fr 1fr; gap: var(--space-md) var(--space-lg); }
 
   .hero-float-stat.stat-bottom { left: 0.6rem; bottom: -1.3rem; }
+
+  /* On phones, the headline and copy should lead; the feed-card mockup
+     follows below it (reverses the tablet order set at 880px). */
+  .hero-visual { order: 0; }
+  .hero-copy { order: -1; }
 }
 
 @media (max-width: 560px) {
