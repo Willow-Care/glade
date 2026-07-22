@@ -43,16 +43,10 @@ body { background: var(--snow); }
   object-fit: contain;
 }
 
-.nav-brand-sub {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  font-weight: 400;
-  padding-left: 0.65rem;
-  margin-left: 0.15rem;
-  border-left: 1px solid var(--alabaster);
+.nav-brand .mark-lockup {
+  width: auto;
+  height: 30px;
+  border-radius: 0;
 }
 
 .nav-links {

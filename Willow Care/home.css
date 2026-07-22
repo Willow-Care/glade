@@ -45,6 +45,12 @@ body { background: var(--snow); }
   border-radius: 7px;
 }
 
+.nav-brand .mark-lockup {
+  width: auto;
+  height: 30px;
+  border-radius: 0;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
