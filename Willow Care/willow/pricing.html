@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing · Willow</title>
+<meta name="description" content="Simple, month-to-month pricing for Willow. Core, Premium, and Enterprise plans for families, aides, and care teams. No annual contracts.">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="product.css">
+<link rel="stylesheet" href="pricing.css">
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- Nav                                                            -->
+<!-- ============================================================ -->
+<header class="site-nav">
+  <div class="container nav-bar">
+    <a href="../index.html" class="nav-brand">
+      <img class="mark" src="../assets/Willow Logo.png" alt="">
+      Willow
+      <span class="nav-brand-sub">by Willow Care</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#about">About</a>
+      <a href="index.html#screenshots">Screenshots</a>
+      <a href="pricing.html" aria-current="page">Pricing</a>
+      <a href="../genesis.html">Our story</a>
+      <a class="nav-cta" href="https://willow.willowcare.app" target="_blank" rel="noopener">Open Willow</a>
+    </nav>
+
+    <button class="nav-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 6H19M3 11H19M3 16H19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="mobileDrawer">
+  <div class="nav-drawer-head">
+    <a href="../index.html" class="nav-brand">
+      <img class="mark" src="../assets/Willow Logo.png" alt="">
+      Willow
+    </a>
+    <button class="nav-drawer-close" id="mobileMenuClose" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="nav-drawer-links" aria-label="Mobile">
+    <a href="index.html#about">About</a>
+    <a href="index.html#screenshots">Screenshots</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="../genesis.html">Our story</a>
+  </nav>
+  <div class="nav-drawer-foot">
+    <a class="btn btn-primary" href="https://willow.willowcare.app" target="_blank" rel="noopener">
+      Open Willow
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
+
+<main>
+
+  <!-- ============================================================ -->
+  <!-- Pricing hero                                                   -->
+  <!-- ============================================================ -->
+  <section class="pricing-hero">
+    <div class="container pricing-hero-inner">
+      <span class="eyebrow">Simple pricing</span>
+      <h1>One plan for every caregiver on the team.</h1>
+      <p class="pricing-hero-lede">Willow is billed month to month. No annual contracts, no surprise renewals, cancel any time from your account.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Pricing matrix                                                 -->
+  <!-- ============================================================ -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="pricing-grid reveal">
+
+        <!-- Core -->
+        <div class="price-card">
+          <div class="price-card-head">
+            <span class="price-name">Core</span>
+            <p class="price-desc">Everything one caregiver needs to start logging today.</p>
+          </div>
+          <div class="price-amount">
+            <span class="amount-num">$9.99</span>
+            <span class="amount-period">/ month</span>
+          </div>
+          <button class="btn btn-primary price-cta" type="button" data-plan="core" data-price-id="price_core_monthly" data-stripe-link="">
+            Start Core
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="price-features">
+            <li>Unlimited daily logs</li>
+            <li>Real-time activity dashboard</li>
+            <li>Full accessibility &amp; color theme options</li>
+            <li>Willow Analysis: an AI snapshot after every log</li>
+          </ul>
+        </div>
+
+        <!-- Premium -->
+        <div class="price-card is-featured">
+          <span class="price-badge">Most popular</span>
+          <div class="price-card-head">
+            <span class="price-name">Premium</span>
+            <p class="price-desc">Bring the whole care team onto one account.</p>
+          </div>
+          <div class="price-amount">
+            <span class="amount-num">$24.99</span>
+            <span class="amount-period">/ month</span>
+          </div>
+          <button class="btn btn-primary price-cta" type="button" data-plan="premium" data-price-id="price_premium_monthly" data-stripe-link="">
+            Start Premium
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="price-features">
+            <li>Everything in Core</li>
+            <li>Unlimited Care Team invites: co-parents, speech and occupational therapists, teachers</li>
+            <li>Chat with Willow: the full conversational AI assistant</li>
+            <li>Multi-log Trend Analysis charts</li>
+            <li>Clinical PDF exports for doctor visits</li>
+          </ul>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="price-card">
+          <div class="price-card-head">
+            <span class="price-name">Enterprise Partners</span>
+            <p class="price-desc">For agencies and clinicians managing many patients.</p>
+          </div>
+          <div class="price-amount">
+            <span class="amount-num">Custom</span>
+            <span class="amount-period">pricing</span>
+          </div>
+          <button class="btn btn-ghost price-cta" type="button" id="enterpriseContactBtn">
+            Contact us
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="price-features">
+            <li>Multi-patient clinician dashboards</li>
+            <li>Custom organizational roles</li>
+            <li>Formal Business Associate Agreements (BAAs)</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <p class="pricing-footnote">All plans are billed monthly in USD. Prices shown do not include applicable tax. Cancel or change your plan any time from the Willow Customer Portal.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Team billing explainer                                         -->
+  <!-- ============================================================ -->
+  <section class="section section-bg-tint">
+    <div class="container">
+      <div class="billing-explainer reveal">
+        <div class="billing-explainer-copy">
+          <span class="eyebrow">One card, one workspace</span>
+          <h2>One caregiver pays. The whole team gets access.</h2>
+          <p>If a parent, a co-parent, and a private aide are all tracking data for the same person, they should never pay for three separate subscriptions. Willow's Premium plan is billed once, to one "billing owner," and everyone they invite into that workspace is covered.</p>
+        </div>
+        <div class="billing-steps">
+          <div class="billing-step">
+            <span class="billing-step-num">01</span>
+            <div>
+              <h4>The billing owner pays</h4>
+              <p>The primary caregiver subscribes to Premium and becomes the billing owner for that workspace.</p>
+            </div>
+          </div>
+          <div class="billing-step">
+            <span class="billing-step-num">02</span>
+            <div>
+              <h4>Invitees join for free</h4>
+              <p>Co-parents, therapists, and aides invited into that same workspace get full feature access at no extra cost.</p>
+            </div>
+          </div>
+          <div class="billing-step">
+            <span class="billing-step-num">03</span>
+            <div>
+              <h4>Access stays scoped</h4>
+              <p>Every workspace is tied to one patient profile, so invited members see only the data for the person they help care for.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FAQ                                                            -->
+  <!-- ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Questions</span>
+        <h2>Pricing, answered.</h2>
+      </div>
+
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>Do I need to pay for every caregiver on my team?</summary>
+          <p>No. One person subscribes as the billing owner for a workspace, and everyone invited into that workspace (co-parents, aides, therapists) gets full access under the same subscription.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can someone abuse this to cover unrelated households?</summary>
+          <p>No. Each workspace is scoped to a single patient profile. Members invited to a workspace can only see, edit, chat, and chart data for that patient. Anyone tracking a different person needs their own workspace and their own plan.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is Willow Analysis?</summary>
+          <p>Willow Analysis is a static, single-day AI snapshot generated after each log. It is available on every plan, including Core.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is Chat with Willow?</summary>
+          <p>Chat with Willow is a full conversational AI assistant that can answer follow-up questions across multiple days of logs. It is included with Premium.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I switch or cancel my plan?</summary>
+          <p>Yes. Every plan is billed month to month with no annual lock-in. You can upgrade, downgrade, or cancel at any time from the Willow Customer Portal.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How does Enterprise pricing work?</summary>
+          <p>Enterprise Partners is built for agencies and clinicians managing many patients at once. Pricing depends on patient volume and organizational needs, so reach out and our team will put together a quote.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Final CTA                                                      -->
+  <!-- ============================================================ -->
+  <section class="section section-bg-porcelain">
+    <div class="container">
+      <div class="final-cta reveal">
+        <span class="eyebrow">Get started</span>
+        <h2>Bring your care team onto one page today.</h2>
+        <p>Start free, upgrade when your team is ready for more.</p>
+        <div class="final-cta-actions">
+          <a class="btn btn-primary" href="https://willow.willowcare.app" target="_blank" rel="noopener">
+            Open Willow
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="../genesis.html">Learn our story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- Enterprise contact modal                                       -->
+<!-- ============================================================ -->
+<div class="modal-overlay" id="contactModalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <button class="modal-close" id="contactModalClose" aria-label="Close dialog">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 3.5L14.5 14.5M14.5 3.5L3.5 14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <span class="eyebrow">Enterprise Partners</span>
+    <h3 id="contactModalTitle">Tell us about your organization.</h3>
+    <p class="modal-lede">Share a few details and our team will follow up with a custom quote.</p>
+
+    <form id="contactForm" class="modal-form">
+      <label>
+        Name
+        <input type="text" name="name" required autocomplete="name">
+      </label>
+      <label>
+        Work email
+        <input type="email" name="email" required autocomplete="email">
+      </label>
+      <label>
+        Organization
+        <input type="text" name="organization" required autocomplete="organization">
+      </label>
+      <label>
+        Approximate number of patients
+        <input type="text" name="patientCount" placeholder="e.g. 25 to 50">
+      </label>
+      <label>
+        Anything else we should know?
+        <textarea name="message" rows="3"></textarea>
+      </label>
+      <button class="btn btn-primary" type="submit">
+        Request a quote
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p class="modal-status" id="contactFormStatus" role="status"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Footer                                                         -->
+<!-- ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-brand">
+          <img class="mark" src="../assets/Willow Logo.png" alt="">
+          Willow
+        </a>
+        <p>The care-coordination platform built by Willow Care. One real-time source of truth for the whole care team.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Willow</h5>
+        <ul>
+          <li><a href="https://willow.willowcare.app" target="_blank" rel="noopener">Open Willow</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Willow Care</h5>
+        <ul>
+          <li><a href="../index.html">The organization</a></li>
+          <li><a href="../genesis.html">Our story</a></li>
+          <li><a href="../index.html#vision">Vision</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Willow Care. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="product.js"></script>
+<script src="pricing.js"></script>
+</body>
+</html>
