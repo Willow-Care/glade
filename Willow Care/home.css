@@ -24,7 +24,7 @@ body { background: var(--snow); }
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
-  padding-block: 1.1rem;
+  padding-block: 0.7rem;
 }
 
 .nav-brand {
@@ -38,8 +38,8 @@ body { background: var(--snow); }
 }
 
 .nav-brand .mark {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   flex-shrink: 0;
   object-fit: contain;
   border-radius: 7px;
@@ -47,7 +47,7 @@ body { background: var(--snow); }
 
 .nav-brand .mark-lockup {
   width: auto;
-  height: 30px;
+  height: 45px;
   border-radius: 0;
 }
 
