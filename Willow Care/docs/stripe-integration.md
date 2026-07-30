@@ -62,8 +62,19 @@ page):
 
 1. `app/dashboard/page.tsx` requires a signed-in user. If there isn't one,
    it redirects to `/login?next=/dashboard?plan=core`, preserving the plan
-   through sign-in (and through `/signup` if they create an account instead).
-2. Once the active profile has loaded, Sidebar checks the `?plan=` param:
+   through sign-in — via email/password, Google OAuth (`GoogleButton`'s
+   `next` prop → `/auth/callback?next=...` → `app/auth/callback/page.tsx`),
+   **and** through `/signup` if they create an account instead.
+2. **New users aren't onboarded yet** — they don't have a care profile.
+   Both signup paths force onboarding (create a profile, or join one with
+   an invite code) *before* anything checkout-related happens:
+   `app/(auth)/signup/page.tsx` (email) verifies the account with a code
+   first (see `EMAIL_VERIFICATION_SETUP.md`), then walks through
+   choice → create/join, then `router.push(next)`; `app/auth/callback/page.tsx`
+   (Google) does the same choice → create/join → `router.replace(next)`.
+   Only after a profile exists does `next` (still carrying `?plan=...`)
+   ever get followed.
+3. Once the active profile has loaded, Sidebar checks the `?plan=` param:
    - **Billing owner, doesn't already have that plan active** → calls
      `/api/checkout` immediately and redirects straight to the real Stripe
      Checkout page (the pasted-image "payment menu" — a full-screen
@@ -73,17 +84,10 @@ page):
      tier or better) → opens **Settings → Billing** instead, showing
      current plan/status and a "Manage billing" button rather than trying
      to sell them something they can't buy or already have.
-3. The same `?plan=` hand-off is reused by the in-app upgrade prompts
+4. The same `?plan=` hand-off is reused by the in-app upgrade prompts
    (`components/PremiumGate.tsx`, shown wherever a Core user hits a
    Premium-only feature) — they link to `/dashboard?plan=premium`, which
    drives the exact same auto-checkout path.
-
-**Known gap:** the `?next=` hand-off (step 1) is only implemented for
-email/password sign-in. A visitor who signs in with Google from that link
-lands on `/dashboard` without the plan pre-selected — they just need one
-extra click into Settings → Billing. Fixing this means threading `next`
-through `GoogleButton`'s OAuth `redirectTo` and reading it back in
-`app/auth/callback/page.tsx`.
 
 If you'd rather skip the app hand-off for a given plan (e.g. a one-off
 promo), set that button's `data-stripe-link` attribute in `pricing.html`
