@@ -18,7 +18,7 @@ needs:
 profiles                       -- one row per care recipient ("workspace")
   id
   child_name
-  tier                    -- 'core' | 'premium'                (added by migration_billing.sql)
+  tier                    -- 'core' | 'premium' | 'beta'        (added by migration_billing.sql / migration_billing_gating.sql)
   billing_owner_id        -- FK -> auth.users.id                (added by migration_billing.sql)
   stripe_customer_id                                            (added by migration_billing.sql)
   stripe_subscription_id                                        (added by migration_billing.sql)
@@ -41,9 +41,11 @@ caregiver_access                -- many caregivers <-> many profiles
   profile and become its billing owner. One subscription always maps to
   exactly one `profiles` row, no matter how many caregivers share it.
 
-Run `Willow/supabase/migration_billing.sql` once (Supabase Dashboard → SQL
-Editor) to add the billing columns above and a `stripe_events` table used
-for webhook idempotency.
+Run `Willow/supabase/migration_billing.sql` then
+`Willow/supabase/migration_billing_gating.sql` once each (Supabase
+Dashboard → SQL Editor) to add the billing columns above, the `beta` tier,
+tier-gated invite codes, and a `stripe_events` table used for webhook
+idempotency.
 
 ## 0. How checkout starts from this site
 
@@ -55,22 +57,32 @@ on click, redirects to:
 https://willow.willowcare.app/dashboard?plan=core
 ```
 
-Inside the app:
+Inside the app (`components/Sidebar.tsx`, mounted on every `/dashboard/*`
+page):
 
 1. `app/dashboard/page.tsx` requires a signed-in user. If there isn't one,
    it redirects to `/login?next=/dashboard?plan=core`, preserving the plan
    through sign-in (and through `/signup` if they create an account instead).
-2. `components/Sidebar.tsx` notices the `?plan=` param on the dashboard,
-   pre-opens **Settings → Billing**, and passes the plan down as a
-   highlight (`components/BillingPanel.tsx`).
-3. The billing owner clicks "Start Core/Premium" in that panel, which
-   calls `/api/checkout` and redirects to the real Stripe Checkout page.
+2. Once the active profile has loaded, Sidebar checks the `?plan=` param:
+   - **Billing owner, doesn't already have that plan active** → calls
+     `/api/checkout` immediately and redirects straight to the real Stripe
+     Checkout page (the pasted-image "payment menu" — a full-screen
+     "Redirecting you to secure checkout…" spinner covers the brief gap).
+     No extra click.
+   - **Anyone else** (not the billing owner, or already subscribed at that
+     tier or better) → opens **Settings → Billing** instead, showing
+     current plan/status and a "Manage billing" button rather than trying
+     to sell them something they can't buy or already have.
+3. The same `?plan=` hand-off is reused by the in-app upgrade prompts
+   (`components/PremiumGate.tsx`, shown wherever a Core user hits a
+   Premium-only feature) — they link to `/dashboard?plan=premium`, which
+   drives the exact same auto-checkout path.
 
-**Known gap:** the `?next=` hand-off is only implemented for email/password
-sign-in. A visitor who signs in with Google from that link lands on
-`/dashboard` without the plan pre-selected — they just need one extra
-click into Settings → Billing. Fixing this means threading `next` through
-`GoogleButton`'s OAuth `redirectTo` and reading it back in
+**Known gap:** the `?next=` hand-off (step 1) is only implemented for
+email/password sign-in. A visitor who signs in with Google from that link
+lands on `/dashboard` without the plan pre-selected — they just need one
+extra click into Settings → Billing. Fixing this means threading `next`
+through `GoogleButton`'s OAuth `redirectTo` and reading it back in
 `app/auth/callback/page.tsx`.
 
 If you'd rather skip the app hand-off for a given plan (e.g. a one-off
@@ -151,3 +163,64 @@ button in Settings → Billing once a profile has a subscription.
   never accidentally create a duplicate subscription for the same profile.
 - Non-owners see the current plan read-only with a note to ask the
   billing owner.
+- Beta testers (see below) see "Beta tester — full access" instead of a
+  plan name/price, and never see the upgrade cards.
+
+## 6. Feature entitlements by tier
+
+`Willow/frontend/lib/entitlements.ts` exports `hasPremiumAccess(tier)`,
+true for `"premium"` and `"beta"`. It gates:
+
+| Feature | Core | Premium / beta | Enforced in |
+|---|---|---|---|
+| Unlimited logs, dashboard, Willow Analysis (per-log AI snapshot) | ✅ | ✅ | not gated — included on every tier |
+| Chat with Willow (conversational AI) | ❌ | ✅ | `app/dashboard/chat/page.tsx` (UI) **and** `app/api/chat/route.ts` (server-side 403 — the only feature gated on both sides, since it's the most expensive to let through) |
+| Long-Term Trends (multi-log AI charts) | ❌ | ✅ | `app/dashboard/trends/page.tsx` (UI only) |
+| Inviting caregivers (new invite codes) | ❌ | ✅ | `components/SettingsPanel.tsx` Team view (UI) **and** the `invite_codes` INSERT policy added by `migration_billing_gating.sql` (RLS — so this one can't be bypassed by calling Supabase directly) |
+
+Core users hit `components/PremiumGate.tsx` in place of the gated UI, with
+a button that links to `/dashboard?plan=premium` (see §0 for what that
+triggers).
+
+**Not yet built:** the pricing page also lists "Clinical PDF exports for
+doctor visits" as a Premium feature. There's no PDF export anywhere in the
+app yet — nothing to gate until that feature exists.
+
+Everything else on the Trends/Chat/Team pages (viewing existing data,
+redeeming someone else's invite code, being invited into a Premium
+profile) is unaffected by tier — gating only applies to the
+Premium-exclusive actions above.
+
+## 7. Granting beta tester access
+
+Beta access is granted by hand in Supabase, not through Stripe — there's
+no self-serve way to become `"beta"`, by design.
+
+1. Find the care profile's `id`. In Supabase Dashboard → SQL Editor:
+
+   ```sql
+   select p.id as profile_id, p.child_name, u.email as owner_email
+   from public.profiles p
+   join public.caregiver_access ca on ca.profile_id = p.id and ca.role = 'owner'
+   join auth.users u on u.id = ca.user_id
+   where u.email = 'tester@example.com';
+   ```
+
+2. Grant it:
+
+   ```sql
+   update public.profiles set tier = 'beta' where id = '<profile_id-from-above>';
+   ```
+
+That's it — no webhook, no Stripe object involved. The profile now passes
+`hasPremiumAccess()` everywhere (Chat with Willow, Long-Term Trends,
+inviting caregivers), and Settings → Billing shows "Beta tester — full
+access" instead of prompting them to subscribe.
+
+To revoke it later: `update public.profiles set tier = 'core' where id = '<profile_id>';`
+(or `'premium'` if they should keep paid access instead).
+
+If a beta tester's profile later gets a *real* Stripe subscription (e.g.
+they leave the beta and pay), the webhook (`/api/webhooks/stripe`) will
+overwrite `tier` back to `'core'`/`'premium'` based on what they actually
+subscribed to — `'beta'` only sticks until something else sets it.
