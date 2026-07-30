@@ -6,23 +6,30 @@
   'use strict';
 
   /* ---------------------------------------------------------------------
-     Stripe Checkout
-     Each button below carries data-price-id (the Stripe Price ID for that
-     plan's monthly recurring price) and data-stripe-link (an optional
-     Stripe Payment Link URL).
+     Checkout hand-off to the Willow app
+     This marketing site is static (no server), so it can never hold a
+     Stripe secret key. Checkout itself has to happen inside the Willow
+     app, where we know which signed-in user and which care profile is
+     billing owner for the subscription (see docs/stripe-integration.md).
 
-     If a Payment Link is set, we redirect straight to it, no backend
-     required. Otherwise we call the /api/checkout route described in
-     docs/stripe-integration.md, which creates a Checkout Session server
-     side and returns its URL.
+     Each button carries data-plan ("core" | "premium"). Clicking it sends
+     the visitor to the app's dashboard with ?plan=<plan>. The app:
+       - redirects signed-out visitors through /login (preserving ?plan=
+         across sign-in/sign-up), then
+       - auto-opens Settings > Billing with that plan pre-selected, so the
+         billing owner just clicks "Start Core/Premium" to check out.
+
+     A data-stripe-link attribute is still honored if you'd rather point a
+     button straight at a Stripe Payment Link instead (no app hop).
      ------------------------------------------------------------------ */
+
+  var WILLOW_APP_URL = 'https://willow.willowcare.app';
 
   var checkoutButtons = document.querySelectorAll('.price-cta[data-plan]');
 
   checkoutButtons.forEach(function (button) {
     button.addEventListener('click', function () {
       var plan = button.getAttribute('data-plan');
-      var priceId = button.getAttribute('data-price-id');
       var paymentLink = button.getAttribute('data-stripe-link');
 
       if (paymentLink) {
@@ -30,40 +37,11 @@
         return;
       }
 
-      startCheckout(plan, priceId, button);
+      button.setAttribute('data-loading', 'true');
+      button.innerHTML = 'Opening Willow…';
+      window.location.href = WILLOW_APP_URL + '/dashboard?plan=' + encodeURIComponent(plan);
     });
   });
-
-  function startCheckout(plan, priceId, button) {
-    button.setAttribute('data-loading', 'true');
-    var originalLabel = button.innerHTML;
-    button.innerHTML = 'Redirecting…';
-
-    fetch('/api/checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan: plan, priceId: priceId })
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error('Checkout session request failed');
-        return res.json();
-      })
-      .then(function (data) {
-        if (data && data.url) {
-          window.location.href = data.url;
-        } else {
-          throw new Error('Missing checkout URL in response');
-        }
-      })
-      .catch(function () {
-        button.removeAttribute('data-loading');
-        button.innerHTML = originalLabel;
-        window.alert(
-          'Checkout isn\'t connected yet. Add a Stripe Payment Link to this button, ' +
-          'or wire up /api/checkout — see docs/stripe-integration.md for the full guide.'
-        );
-      });
-  }
 
   /* ---------------------------------------------------------------------
      Enterprise "Contact us" lead-gen modal
