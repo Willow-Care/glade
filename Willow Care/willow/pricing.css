@@ -134,6 +134,26 @@
 
 .price-card.is-featured .amount-period { color: rgba(255,255,255,0.65); }
 
+.amount-annual {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-top: -0.7rem;
+  margin-bottom: var(--space-md);
+}
+
+.price-card.is-featured .amount-annual { color: rgba(255,255,255,0.65); }
+
+.price-soon {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-left: 0.3rem;
+}
+
+.price-card.is-featured .price-soon { color: rgba(255,255,255,0.55); }
+
 .price-cta {
   width: 100%;
   justify-content: center;
