@@ -8,19 +8,19 @@
   /* ---------------------------------------------------------------------
      Checkout hand-off to the Willow app
      This marketing site is static (no server), so it can never hold a
-     Stripe secret key. Checkout itself has to happen inside the Willow
+     Polar access token. Checkout itself has to happen inside the Willow
      app, where we know which signed-in user and which care profile is
-     billing owner for the subscription (see docs/stripe-integration.md).
+     billing owner for the subscription (see docs/polar-integration.md).
 
      Each button carries data-plan ("core" | "premium"). Clicking it sends
      the visitor to the app's dashboard with ?plan=<plan>. The app:
        - redirects signed-out visitors through /login (preserving ?plan=
          across sign-in/sign-up), then
-       - auto-opens Settings > Billing with that plan pre-selected, so the
-         billing owner just clicks "Start Core/Premium" to check out.
+       - auto-starts Polar Checkout for the billing owner (or opens
+         Settings > Billing if they're not the owner, or already subscribed).
 
-     A data-stripe-link attribute is still honored if you'd rather point a
-     button straight at a Stripe Payment Link instead (no app hop).
+     A data-checkout-link attribute is still honored if you'd rather point a
+     button straight at a Polar Checkout Link instead (no app hop).
      ------------------------------------------------------------------ */
 
   var WILLOW_APP_URL = 'https://willow.willowcare.app';
@@ -30,7 +30,7 @@
   checkoutButtons.forEach(function (button) {
     button.addEventListener('click', function () {
       var plan = button.getAttribute('data-plan');
-      var paymentLink = button.getAttribute('data-stripe-link');
+      var paymentLink = button.getAttribute('data-checkout-link');
 
       if (paymentLink) {
         window.location.href = paymentLink;
