@@ -5,6 +5,83 @@
 body { background: var(--snow); }
 
 /* ---------------------------------------------------------------------- */
+/* Mobile app announcement banner                                          */
+/* ---------------------------------------------------------------------- */
+
+.promo-banner {
+  background: linear-gradient(120deg, var(--spruce), var(--hunter) 60%, var(--hunter-dim));
+  color: var(--snow);
+  overflow: hidden;
+  max-height: 64px;
+  transition: max-height 0.4s var(--ease-soft, ease), opacity 0.3s ease, padding 0.4s ease;
+}
+
+.promo-banner.is-dismissed {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.promo-banner-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 2.75rem;
+  text-align: center;
+}
+
+.promo-banner-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.promo-banner-text strong { font-weight: 700; }
+
+.promo-banner-icon {
+  flex-shrink: 0;
+  color: var(--mint);
+  animation: promo-sparkle 2.6s ease-in-out infinite;
+}
+
+@keyframes promo-sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50%      { transform: scale(1.18) rotate(10deg); opacity: 0.7; }
+}
+
+.promo-banner-close {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.75);
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.promo-banner-close:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--snow);
+}
+
+@media (max-width: 640px) {
+  .promo-banner-inner { padding-inline: 2.5rem; }
+  .promo-banner-text { font-size: 0.78rem; }
+}
+
+/* ---------------------------------------------------------------------- */
 /* Nav                                                                     */
 /* ---------------------------------------------------------------------- */
 

@@ -89,6 +89,23 @@
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  /* ---- Mobile app announcement banner ---- */
+  var PROMO_KEY = 'willowcare:mobile-banner-dismissed';
+  var promoBanner = document.getElementById('mobileBanner');
+  var promoCloseBtn = document.getElementById('promoBannerClose');
+
+  if (promoBanner) {
+    if (localStorage.getItem(PROMO_KEY) === 'true') {
+      promoBanner.remove();
+    } else if (promoCloseBtn) {
+      promoCloseBtn.addEventListener('click', function () {
+        promoBanner.classList.add('is-dismissed');
+        try { localStorage.setItem(PROMO_KEY, 'true'); } catch (e) {}
+        window.setTimeout(function () { promoBanner.remove(); }, 450);
+      });
+    }
+  }
+
   /* ---- Sticky nav shadow on scroll ---- */
   var siteNav = document.querySelector('.site-nav');
   if (siteNav) {
