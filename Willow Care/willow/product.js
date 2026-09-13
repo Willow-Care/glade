@@ -52,6 +52,33 @@
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  /* ---- Feature showcase: swap the sticky screenshot as steps scroll ---- */
+  var steps = document.querySelectorAll('.showcase-step');
+  var shots = document.querySelectorAll('.shot');
+
+  if (steps.length && shots.length) {
+    function setActive(i) {
+      steps.forEach(function (s) { s.classList.toggle('is-active', Number(s.dataset.i) === i); });
+      shots.forEach(function (s) { s.classList.toggle('is-active', Number(s.dataset.i) === i); });
+    }
+
+    if ('IntersectionObserver' in window) {
+      // A step becomes active when it crosses a thin band at the viewport's
+      // vertical center (top/bottom margins pulled in by 45% each).
+      var stepObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) setActive(Number(entry.target.dataset.i));
+          });
+        },
+        { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+      );
+      steps.forEach(function (s) { stepObserver.observe(s); });
+    }
+    // If IO is unavailable the CSS default (first shot active) still shows a
+    // screenshot, and the mobile layout reveals every shot regardless.
+  }
+
   /* ---- Sticky nav shadow on scroll ---- */
   var siteNav = document.querySelector('.site-nav');
   if (siteNav) {

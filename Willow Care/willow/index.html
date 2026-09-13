@@ -247,33 +247,132 @@
   <!-- ============================================================ -->
   <!-- Screenshots                                                    -->
   <!-- ============================================================ -->
-  <section class="section" id="screenshots">
+  <!--
+    Scroll-driven feature showcase. As you scroll the steps on the right, the
+    sticky screenshot on the left swaps to match. To use your own screenshots:
+    drop a PNG/JPG into  assets/shots/  and, inside each <figure class="shot">,
+    replace the <div class="shot-ph">…</div> placeholder with an <img>, e.g.
+        <img src="../assets/shots/care-feed.png" alt="Willow care feed">
+    Recommended capture size ~1600×1000 (16:10). Keep the data-i order in sync
+    between each .shot and its matching .showcase-step.
+  -->
+  <section class="section showcase" id="screenshots">
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">Willow in practice</span>
-        <h2>What a day inside Willow looks like.</h2>
-        <p>A look at the feed, the vitals dashboard, and the care calendar in action. Real product screenshots are the fastest way to build trust with a family evaluating Willow for the first time.</p>
+        <h2>Scroll through a day inside Willow.</h2>
+        <p>Feed, logs, vitals, behavior tracking, tasks, and AI insights — the major features, one scroll at a time. Real product screenshots are the fastest way to earn a family's trust.</p>
       </div>
 
-      <div class="gallery-grid reveal">
-        <div class="gallery-item is-tall">
-          <div class="gallery-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 15L8.5 10L13 14L21 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Care feed screenshot</span>
+      <div class="showcase-scroll">
+
+        <!-- Sticky screenshot stage (left) -->
+        <div class="showcase-stage">
+          <div class="stage-frame">
+
+            <figure class="shot is-active" data-i="0">
+              <div class="shot-bar" aria-hidden="true"><span></span><span></span><span></span><em>willow.willowcare.app/dashboard</em></div>
+              <div class="shot-canvas">
+                <div class="shot-ph">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6H20M4 12H20M4 18H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  <span>Care feed — /dashboard</span>
+                </div>
+              </div>
+              <figcaption>Central care feed — every update in one live timeline.</figcaption>
+            </figure>
+
+            <figure class="shot" data-i="1">
+              <div class="shot-bar" aria-hidden="true"><span></span><span></span><span></span><em>willow.willowcare.app/dashboard/log</em></div>
+              <div class="shot-canvas">
+                <div class="shot-ph">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  <span>Daily log form — /dashboard/log</span>
+                </div>
+              </div>
+              <figcaption>Daily logs — capture mood, sleep, meds, and meals in seconds.</figcaption>
+            </figure>
+
+            <figure class="shot" data-i="2">
+              <div class="shot-bar" aria-hidden="true"><span></span><span></span><span></span><em>willow.willowcare.app/dashboard/vitals</em></div>
+              <div class="shot-canvas">
+                <div class="shot-ph">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H8L10 6L14 18L16 12H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>Vitals &amp; trends — /dashboard/vitals</span>
+                </div>
+              </div>
+              <figcaption>Vitals &amp; trends — spot patterns before they become emergencies.</figcaption>
+            </figure>
+
+            <figure class="shot" data-i="3">
+              <div class="shot-bar" aria-hidden="true"><span></span><span></span><span></span><em>willow.willowcare.app/dashboard/abc</em></div>
+              <div class="shot-canvas">
+                <div class="shot-ph">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M9 3.5h6v3H9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 11h6M9 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  <span>Behavior log — /dashboard/abc</span>
+                </div>
+              </div>
+              <figcaption>Behavior (ABC) log — antecedent, behavior, consequence, structured.</figcaption>
+            </figure>
+
+            <figure class="shot" data-i="4">
+              <div class="shot-bar" aria-hidden="true"><span></span><span></span><span></span><em>willow.willowcare.app/dashboard/tasks</em></div>
+              <div class="shot-canvas">
+                <div class="shot-ph">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 3V7M16 3V7M4 10H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  <span>Tasks &amp; calendar — /dashboard/tasks</span>
+                </div>
+              </div>
+              <figcaption>Tasks &amp; calendar — a shared schedule with clear ownership.</figcaption>
+            </figure>
+
+            <figure class="shot" data-i="5">
+              <div class="shot-bar" aria-hidden="true"><span></span><span></span><span></span><em>willow.willowcare.app/dashboard/insights</em></div>
+              <div class="shot-canvas">
+                <div class="shot-ph">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3L13.8 8.2L19 10L13.8 11.8L12 17L10.2 11.8L5 10L10.2 8.2L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                  <span>AI insights — /dashboard/insights</span>
+                </div>
+              </div>
+              <figcaption>AI insights — a BCBA-style read on the week's patterns.</figcaption>
+            </figure>
+
           </div>
         </div>
-        <div class="gallery-item">
-          <div class="gallery-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H8L10 6L14 18L16 12H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Vitals dashboard</span>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 3V7M16 3V7M4 10H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            <span>Care calendar</span>
-          </div>
-        </div>
+
+        <!-- Feature steps (right) — scrolling these drives the stage -->
+        <ol class="showcase-steps">
+          <li class="showcase-step is-active" data-i="0">
+            <span class="step-eyebrow">01 · Live feed</span>
+            <h3>Every update, in one timeline</h3>
+            <p>Meals, mood, medications, therapy notes — the whole day flows into a single chronological feed the entire care team sees in real time.</p>
+          </li>
+          <li class="showcase-step" data-i="1">
+            <span class="step-eyebrow">02 · Daily logs</span>
+            <h3>Capture the whole day in seconds</h3>
+            <p>A fast, structured log for mood, sleep, medications, meals, and time breakdown — with drafts so a busy shift can finish later.</p>
+          </li>
+          <li class="showcase-step" data-i="2">
+            <span class="step-eyebrow">03 · Vitals &amp; trends</span>
+            <h3>Spot trends before they become emergencies</h3>
+            <p>Heart rate, blood pressure, weight, and oxygen — logged over time and charted so subtle changes surface early.</p>
+          </li>
+          <li class="showcase-step" data-i="3">
+            <span class="step-eyebrow">04 · Behavior log</span>
+            <h3>Structured behavior tracking</h3>
+            <p>Record incidents with clinical ABC structure — antecedent, behavior, consequence, and intensity — ready to share with a BCBA.</p>
+          </li>
+          <li class="showcase-step" data-i="4">
+            <span class="step-eyebrow">05 · Tasks &amp; calendar</span>
+            <h3>Shared schedule, clear ownership</h3>
+            <p>Board, list, and calendar views for appointments, routines, and daily checklists — every task assigned to a real person.</p>
+          </li>
+          <li class="showcase-step" data-i="5">
+            <span class="step-eyebrow">06 · AI insights</span>
+            <h3>A BCBA-style read on the week</h3>
+            <p>Willow analyzes recent logs like a compassionate analyst — surfacing mood/sleep correlations, patterns, and gentle, actionable suggestions.</p>
+          </li>
+        </ol>
+
       </div>
     </div>
   </section>
