@@ -1,0 +1,307 @@
+/* ==========================================================================
+   Willow Care — Founder page
+   Builds on home.css (nav, footer, buttons, sections, .reveal). This file
+   only adds the founder-specific layout + the decorated photo frame.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------- */
+/* Hero                                                                     */
+/* ---------------------------------------------------------------------- */
+
+.founder-hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 7vw, 6rem);
+}
+
+.founder-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 0%, var(--mint) 0%, transparent 46%),
+    radial-gradient(circle at 100% 20%, var(--porcelain) 0%, transparent 42%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.founder-hero-grid {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.founder-intro h1 {
+  font-size: var(--step-5);
+  margin-bottom: var(--space-md);
+}
+
+.founder-intro h1 em { font-style: italic; color: var(--hunter); }
+
+.founder-intro .hero-lede {
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin-bottom: var(--space-md);
+}
+
+/* Identity chips */
+.founder-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: var(--space-lg);
+}
+
+.founder-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--spruce);
+  background: var(--mint);
+  border: 1px solid var(--alabaster);
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+}
+
+.founder-chip svg { width: 13px; height: 13px; color: var(--hunter); }
+
+/* ---------------------------------------------------------------------- */
+/* Decorated portrait frame                                                 */
+/* ---------------------------------------------------------------------- */
+
+.founder-portrait {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+/* Soft offset panel behind the frame */
+.founder-portrait::before {
+  content: '';
+  position: absolute;
+  inset: 20px -20px -24px 24px;
+  background: var(--mint);
+  border-radius: var(--radius-lg);
+  z-index: 0;
+}
+
+.portrait-frame {
+  position: relative;
+  z-index: 1;
+  background: var(--white);
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--alabaster);
+  box-shadow: var(--shadow-lg);
+}
+
+.portrait-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: calc(var(--radius-lg) - 8px);
+  overflow: hidden;
+  border: 1.5px solid rgba(66, 101, 66, 0.28);   /* hunter hairline */
+  background: var(--porcelain);
+}
+
+.portrait-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.portrait-ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: var(--hunter);
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.portrait-ph svg { width: 38px; height: 38px; opacity: 0.6; }
+
+.portrait-ph span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+/* Corner leaf flourishes */
+.leaf-accent {
+  position: absolute;
+  z-index: 2;
+  width: 54px;
+  height: 54px;
+  color: var(--hunter);
+  filter: drop-shadow(0 4px 8px rgba(37, 53, 42, 0.12));
+}
+
+.leaf-tl { top: -18px; left: -18px; transform: rotate(-14deg); }
+.leaf-br { bottom: -22px; right: -16px; transform: rotate(166deg); }
+
+/* Floating name tag */
+.portrait-tag {
+  position: absolute;
+  z-index: 3;
+  bottom: 1.4rem;
+  left: -1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--spruce);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.05rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.portrait-tag svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.portrait-tag .t-main {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.15;
+}
+
+.portrait-tag .t-sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Story                                                                    */
+/* ---------------------------------------------------------------------- */
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.story-callout {
+  position: sticky;
+  top: 96px;
+  margin: 0;
+  background: var(--spruce);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.8rem, 4vw, 2.6rem);
+  box-shadow: var(--shadow-md);
+}
+
+.story-callout .q {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--step-2);
+  line-height: 1.28;
+  margin: 0;
+}
+
+.story-callout cite {
+  display: block;
+  margin-top: var(--space-md);
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.story-body p {
+  font-size: var(--step-0);
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin-bottom: var(--space-md);
+}
+
+.story-body p:last-child { margin-bottom: 0; }
+.story-body strong { color: var(--spruce); font-weight: 600; }
+
+/* ---------------------------------------------------------------------- */
+/* Interests                                                                */
+/* ---------------------------------------------------------------------- */
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.interest-card {
+  background: var(--white);
+  border: 1px solid var(--alabaster);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: transform var(--dur-fast) var(--ease-soft),
+              box-shadow var(--dur-fast) var(--ease-soft);
+}
+
+.interest-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.interest-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--mint);
+  color: var(--hunter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.2rem;
+}
+
+.interest-icon svg { width: 22px; height: 22px; }
+
+.interest-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  color: var(--spruce);
+}
+
+.interest-card p {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Responsive                                                               */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 880px) {
+  .founder-hero-grid { grid-template-columns: 1fr; gap: clamp(2.5rem, 8vw, 3.5rem); }
+  .founder-portrait { order: -1; max-width: 340px; }
+  .story-grid { grid-template-columns: 1fr; }
+  .story-callout { position: static; }
+  .interest-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .founder-portrait::before { inset: 14px -12px -16px 16px; }
+  .portrait-tag { left: 0.6rem; bottom: 0.8rem; }
+  .leaf-accent { width: 42px; height: 42px; }
+}
