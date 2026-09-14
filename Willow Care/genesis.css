@@ -314,6 +314,14 @@ body { background: var(--snow); }
   margin-bottom: var(--space-lg);
 }
 
+.story-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
 .story-cta .btn-primary {
   background: var(--white);
   color: var(--spruce);
