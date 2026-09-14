@@ -79,6 +79,55 @@
     // screenshot, and the mobile layout reveals every shot regardless.
   }
 
+  /* ---- Lightbox: click a screenshot to enlarge ---- */
+  var shotImgs = document.querySelectorAll('.shot-canvas img');
+  if (shotImgs.length) {
+    var lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', 'Screenshot preview');
+    lb.innerHTML =
+      '<button class="lightbox-close" type="button" aria-label="Close preview">' +
+        '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+      '</button>' +
+      '<img alt="">';
+    document.body.appendChild(lb);
+
+    var lbImg = lb.querySelector('img');
+    var lbClose = lb.querySelector('.lightbox-close');
+    var lastFocused = null;
+
+    function openLightbox(src, alt) {
+      lastFocused = document.activeElement;
+      lbImg.src = src;
+      lbImg.alt = alt || 'Screenshot preview';
+      lb.classList.add('is-open');
+      document.body.classList.add('lightbox-open');
+      lbClose.focus();
+    }
+    function closeLightbox() {
+      if (!lb.classList.contains('is-open')) return;
+      lb.classList.remove('is-open');
+      document.body.classList.remove('lightbox-open');
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    shotImgs.forEach(function (img) {
+      img.addEventListener('click', function () {
+        openLightbox(img.currentSrc || img.src, img.alt);
+      });
+    });
+    lbImg.addEventListener('click', closeLightbox);          // click the big image to close
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', function (e) {              // click the backdrop to close
+      if (e.target === lb) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+
   /* ---- Sticky nav shadow on scroll ---- */
   var siteNav = document.querySelector('.site-nav');
   if (siteNav) {

@@ -781,6 +781,91 @@ body { background: var(--snow); }
 }
 
 /* ---------------------------------------------------------------------- */
+/* Lightbox — click a screenshot to enlarge                                 */
+/* ---------------------------------------------------------------------- */
+
+.shot-canvas img { cursor: zoom-in; }
+
+/* "Click to enlarge" hint (pointer devices only) */
+@media (hover: hover) {
+  .shot-canvas::after {
+    content: "Click to enlarge";
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    background: rgba(37, 53, 42, 0.72);
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity var(--dur-fast) var(--ease-soft),
+                transform var(--dur-fast) var(--ease-soft);
+    pointer-events: none;
+  }
+  .shot-canvas:hover::after { opacity: 1; transform: translateY(0); }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(37, 53, 42, 0.82);   /* spruce-tinted scrim */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-med) var(--ease-soft),
+              visibility var(--dur-med) var(--ease-soft);
+}
+
+.lightbox.is-open { opacity: 1; visibility: visible; }
+
+.lightbox img {
+  max-width: min(1200px, 100%);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: var(--shadow-lg);
+  transform: scale(0.97);
+  transition: transform var(--dur-med) var(--ease-leaf);
+  cursor: zoom-out;
+}
+
+.lightbox.is-open img { transform: scale(1); }
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(0.75rem, 2vw, 1.5rem);
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: background var(--dur-fast) var(--ease-soft);
+}
+
+.lightbox-close:hover { background: rgba(255, 255, 255, 0.24); }
+.lightbox-close svg { width: 20px; height: 20px; }
+
+body.lightbox-open { overflow: hidden; }
+
+/* ---------------------------------------------------------------------- */
 /* Final CTA                                                                */
 /* ---------------------------------------------------------------------- */
 
